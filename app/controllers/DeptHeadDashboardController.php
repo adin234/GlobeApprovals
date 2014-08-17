@@ -55,6 +55,11 @@ class DeptHeadDashboardController extends BaseController {
 		$comment = ApplicationComment::create($data);
 		$comment->save();
 		$transaction->update(array('status' => $data['status']));
+		if(isset($data['approved'])) {
+			SmsSender::sendUpdate($transaction);
+		}  else {
+			SmsSender::updateComment($data['message'], $transaction);
+		}
 		return Redirect::to('/depthead/transactions/'.$id);
 
 	}

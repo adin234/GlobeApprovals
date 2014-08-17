@@ -65,6 +65,7 @@ class UserDashboardController extends BaseController {
 			$data['application_date'] = date('Y-m-d', strtotime($data['application_date'].' 00:00:00'));
 			$application = Application::create($data);
 			$application->save();
+			SmsSender::sendUpdate($application);
 			return Redirect::to('/user/dashboard')->with('message', 'Successfully submitted request.');
 		}
 

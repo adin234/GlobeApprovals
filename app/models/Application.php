@@ -46,4 +46,25 @@ class Application extends Eloquent {
 		}
 	}
 
+	public static function getHead($value) {
+		switch($value) {
+			case 1: 
+				return 'depthead';
+			case 2: 
+				return 'divhead';
+			case 3: 
+				return 'grouphead';
+			case 4: 
+				return 'dishead';
+			case 5: 
+				return 'Waiting for SAP posting';
+			case 6: 
+				return 'Waiting for DIFM Head';
+			case 7:
+				return 'Waiting for DO Head';
+			case 8:
+				return 'Approved';
+		}	
+	}
+
 }

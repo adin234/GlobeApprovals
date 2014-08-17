@@ -55,6 +55,9 @@ class DivHeadDashboardController extends BaseController {
 		$comment = ApplicationComment::create($data);
 		$comment->save();
 		$transaction->update(array('status' => $data['status']));
+		if(isset($data['approved'])) {
+			SmsSender::sendUpdate($transaction);
+		}
 		return Redirect::to('/divhead/transactions/'.$id);
 
 	}
